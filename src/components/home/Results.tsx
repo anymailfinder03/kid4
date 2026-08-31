@@ -122,7 +122,7 @@ const CHARACTER =
   'https://res.cloudinary.com/wsaz946u/image/upload/v1788166532/stream-1.svg';
 
 const flagshipShape: CSSProperties = {
-  borderRadius: '46% 54% 52% 48% / 54% 46% 54% 46%',
+  borderRadius: '28px 44px 32px 52px / 38px 28px 46px 30px',
 };
 
 export default function Results() {
@@ -209,7 +209,7 @@ export default function Results() {
         {/* ── PART 2: Student spotlight cards ── */}
         {/* Desktop: asymmetric editorial grid — flagship left (2 rows), 3 stacked right */}
         <div className="mt-16 hidden lg:grid lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-7 lg:row-span-2">
+          <div className="self-start lg:col-span-7">
             <FlagshipCard student={students[0]} />
           </div>
           <div className="lg:col-span-5 flex flex-col gap-6">
@@ -268,22 +268,22 @@ function FlagshipCard({
   return (
     <article
       className={[
-        'group relative h-full overflow-hidden p-8 shadow-lift ring-1 ring-ink-300/20 transition-all duration-300 ease-smooth hover:shadow-card',
+        'group relative overflow-visible p-8 shadow-lift ring-1 ring-ink-300/20 transition-all duration-300 ease-smooth hover:shadow-card',
         student.panelClass,
         mobile ? student.tilt : 'rotate-[-1.5deg]',
       ].join(' ')}
-      style={mobile ? { borderRadius: student.shape } : flagshipShape}
+      style={mobile ? { borderRadius: '28px 38px 32px 44px / 36px 28px 42px 30px' } : flagshipShape}
     >
       {/* Header row: organic photo frame + name/school */}
       <div className="flex items-center gap-5">
         <div
-          className="relative h-28 w-28 shrink-0 overflow-hidden shadow-card ring-1 ring-ink-900/5 lg:h-32 lg:w-32"
+          className="relative h-32 w-32 shrink-0 overflow-hidden shadow-card ring-1 ring-ink-900/5 sm:h-36 sm:w-36 lg:h-40 lg:w-40"
           style={{ borderRadius: student.photoShape }}
         >
           <img
             src={student.photo}
             alt={`Học viên ${student.name} tại ILE`}
-            className="h-full w-full object-cover transition-transform duration-700 ease-smooth group-hover:scale-105"
+            className="h-full w-full bg-cream-50 object-contain transition-transform duration-700 ease-smooth group-hover:scale-105"
             loading="lazy"
           />
         </div>
@@ -329,26 +329,26 @@ function SpotlightCard({ student }: { student: Student }) {
   return (
     <article
       className={[
-        'group relative overflow-hidden p-6 shadow-soft ring-1 ring-ink-300/20 transition-all duration-300 ease-smooth hover:-translate-y-1 hover:shadow-card',
+        'group relative overflow-visible p-6 shadow-soft ring-1 ring-ink-300/20 transition-all duration-300 ease-smooth hover:-translate-y-1 hover:shadow-card',
         student.panelClass,
         student.tilt,
       ].join(' ')}
-      style={{ borderRadius: student.shape }}
+      style={{ borderRadius: '26px 36px 30px 42px / 34px 26px 38px 28px' }}
     >
       {/* Header row: organic photo frame + name/school */}
       <div className="flex items-center gap-4">
         <div
-          className="relative h-16 w-16 shrink-0 overflow-hidden shadow-card ring-1 ring-ink-900/5"
+          className="relative h-20 w-20 shrink-0 overflow-hidden shadow-card ring-1 ring-ink-900/5 sm:h-24 sm:w-24"
           style={{ borderRadius: student.photoShape }}
         >
           <img
             src={student.photo}
             alt={`Học viên ${student.name} tại ILE`}
-            className="h-full w-full object-cover transition-transform duration-700 ease-smooth group-hover:scale-105"
+            className="h-full w-full bg-cream-50 object-contain transition-transform duration-700 ease-smooth group-hover:scale-105"
             loading="lazy"
           />
         </div>
-        <div className="min-w-0">
+        <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
             <span
               className={[
