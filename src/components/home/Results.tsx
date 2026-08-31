@@ -1,6 +1,6 @@
 import { type CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CircleCheck as CheckCircle2, Sparkles, Star, Award } from 'lucide-react';
+import { ArrowRight, CircleCheck as CheckCircle2, Sparkles, Award } from 'lucide-react';
 
 interface Stat {
   value: string;
@@ -37,9 +37,11 @@ const stats: Stat[] = [
 interface Student {
   name: string;
   context: string;
+  photo: string;
   achievements: string[];
   panelClass: string;
   accentClass: string;
+  photoShape: string;
   shape: string;
   tilt: string;
 }
@@ -48,6 +50,8 @@ const students: Student[] = [
   {
     name: 'Đỗ Lê Tuấn Kiệt',
     context: 'Lớp 10 · Trường TH-THCS-THPT Thái Bình Dương (IPS)',
+    photo:
+      'https://res.cloudinary.com/wsaz946u/image/upload/v1788167404/kindy_nguyenquangkhai.webp',
     achievements: [
       'Học bổng Tinh hoa xuyên suốt cấp THPT',
       'Diễn giả tại TEDxUCIS Youth 2025',
@@ -56,12 +60,15 @@ const students: Student[] = [
     ],
     panelClass: 'bg-sky-100/70',
     accentClass: 'bg-sky-300 text-ink-900',
+    photoShape: '46% 54% 52% 48% / 54% 46% 54% 46%',
     shape: '48% 52% 56% 44% / 44% 56% 44% 56%',
     tilt: 'rotate-[-1.5deg]',
   },
   {
     name: 'Võ Trần Song Thư',
     context: 'Lớp 12 · Trường TH-THCS-THPT Thái Bình Dương (IPS)',
+    photo:
+      'https://res.cloudinary.com/wsaz946u/image/upload/v1788167400/kindy_hotantinhanh.webp',
     achievements: [
       'Học bổng Đại học Fulbright Việt Nam',
       'Học bổng VinUni & Đại học Quốc tế Sài Gòn',
@@ -70,12 +77,15 @@ const students: Student[] = [
     ],
     panelClass: 'bg-blush-100/70',
     accentClass: 'bg-blush-300 text-ink-900',
+    photoShape: '52% 48% 44% 56% / 48% 52% 48% 52%',
     shape: '56% 44% 48% 52% / 52% 48% 56% 44%',
     tilt: 'rotate-[1deg]',
   },
   {
     name: 'Nguyễn Hoàng Kim Ngân',
     context: 'Lớp 9 · Trường TH-THCS-THPT Thái Bình Dương (IPS)',
+    photo:
+      'https://res.cloudinary.com/wsaz946u/image/upload/v1788167401/kindy_lekimphandang.webp',
     achievements: [
       'Học bổng Tài năng IGC cấp THCS',
       'Diễn giả TEDx Youth IGCSchool TBD 2022',
@@ -84,12 +94,15 @@ const students: Student[] = [
     ],
     panelClass: 'bg-cream-50',
     accentClass: 'bg-cream-300 text-ink-900',
+    photoShape: '58% 42% 45% 55% / 48% 55% 45% 52%',
     shape: '44% 56% 52% 48% / 56% 44% 56% 44%',
     tilt: 'rotate-[-1deg]',
   },
   {
     name: 'Nguyễn Thị Lam Ngọc',
     context: 'Lớp 6 · Trường TH-THCS IGC Bến Tre',
+    photo:
+      'https://res.cloudinary.com/wsaz946u/image/upload/v1788167396/kindy_tranbaokhang.webp',
     achievements: [
       'Học bổng Tài năng xuyên suốt cấp THCS',
       'Dự án Triển vọng vòng Quốc gia, cuộc thi Leader in Me 2023',
@@ -97,6 +110,7 @@ const students: Student[] = [
     ],
     panelClass: 'bg-sky-100/60',
     accentClass: 'bg-ink-900 text-cream-100',
+    photoShape: '42% 58% 52% 48% / 58% 42% 58% 42%',
     shape: '52% 48% 44% 56% / 48% 52% 48% 52%',
     tilt: 'rotate-[1.5deg]',
   },
@@ -105,7 +119,7 @@ const students: Student[] = [
 const BG_IMAGE =
   'https://res.cloudinary.com/wsaz946u/image/upload/v1788166532/kindy_bg_trust.webp';
 const CHARACTER =
-  'https://res.cloudinary.com/wsaz946u/image/upload/v1788166532/listen-1.svg';
+  'https://res.cloudinary.com/wsaz946u/image/upload/v1788166532/stream-1.svg';
 
 const flagshipShape: CSSProperties = {
   borderRadius: '46% 54% 52% 48% / 54% 46% 54% 46%',
@@ -126,6 +140,14 @@ export default function Results() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-cream-100/90 via-cream-100/75 to-cream-100/90" />
       </div>
+
+      {/* Single character accent — peeking from the section's top-right, clear of all cards */}
+      <img
+        src={CHARACTER}
+        alt=""
+        aria-hidden
+        className="pointer-events-none absolute -right-4 top-6 hidden h-20 w-20 drop-shadow-[0_8px_16px_rgba(31,42,55,0.12)] lg:block"
+      />
 
       <div className="container-page relative">
         {/* Section header */}
@@ -187,20 +209,9 @@ export default function Results() {
         {/* ── PART 2: Student spotlight cards ── */}
         {/* Desktop: asymmetric editorial grid — flagship left (2 rows), 3 stacked right */}
         <div className="mt-16 hidden lg:grid lg:grid-cols-12 lg:gap-8">
-          {/* Flagship card — left, spans 2 rows */}
-          <div className="relative lg:col-span-7 lg:row-span-2">
+          <div className="lg:col-span-7 lg:row-span-2">
             <FlagshipCard student={students[0]} />
-
-            {/* Character accent — peeking near flagship card only */}
-            <img
-              src={CHARACTER}
-              alt=""
-              aria-hidden
-              className="absolute -right-6 -top-8 h-24 w-24 drop-shadow-[0_8px_16px_rgba(31,42,55,0.14)]"
-            />
           </div>
-
-          {/* Three smaller cards — right column */}
           <div className="lg:col-span-5 flex flex-col gap-6">
             <SpotlightCard student={students[1]} />
             <SpotlightCard student={students[2]} />
@@ -211,13 +222,9 @@ export default function Results() {
         {/* Mobile / tablet: clean vertical stack, flagship first */}
         <div className="mt-12 flex flex-col gap-6 lg:hidden">
           <FlagshipCard student={students[0]} mobile />
-
-          {/* Character accent — peeking near flagship card only */}
-          <div className="relative">
-            <SpotlightCard student={students[1]} />
-            <SpotlightCard student={students[2]} />
-            <SpotlightCard student={students[3]} />
-          </div>
+          <SpotlightCard student={students[1]} />
+          <SpotlightCard student={students[2]} />
+          <SpotlightCard student={students[3]} />
         </div>
 
         {/* CTA — ghost-style link */}
@@ -267,19 +274,30 @@ function FlagshipCard({
       ].join(' ')}
       style={mobile ? { borderRadius: student.shape } : flagshipShape}
     >
-      {/* Ribbon-style header */}
-      <div className="flex items-center gap-4">
-        <span
-          className={[
-            'inline-flex h-14 w-14 shrink-0 items-center justify-center shadow-card',
-            student.accentClass,
-          ].join(' ')}
-          style={{ borderRadius: '44% 56% 48% 52% / 58% 42% 58% 42%' }}
+      {/* Header row: organic photo frame + name/school */}
+      <div className="flex items-center gap-5">
+        <div
+          className="relative h-28 w-28 shrink-0 overflow-hidden shadow-card ring-1 ring-ink-900/5 lg:h-32 lg:w-32"
+          style={{ borderRadius: student.photoShape }}
         >
-          <Award className="h-7 w-7" strokeWidth={2.25} />
-        </span>
-        <div>
-          <h3 className="font-heading text-2xl font-extrabold leading-tight text-ink-900 lg:text-3xl">
+          <img
+            src={student.photo}
+            alt={`Học viên ${student.name} tại ILE`}
+            className="h-full w-full object-cover transition-transform duration-700 ease-smooth group-hover:scale-105"
+            loading="lazy"
+          />
+        </div>
+        <div className="min-w-0">
+          <span
+            className={[
+              'inline-flex h-10 w-10 items-center justify-center shadow-soft',
+              student.accentClass,
+            ].join(' ')}
+            style={{ borderRadius: '44% 56% 48% 52% / 58% 42% 58% 42%' }}
+          >
+            <Award className="h-5 w-5" strokeWidth={2.25} />
+          </span>
+          <h3 className="mt-3 font-heading text-2xl font-extrabold leading-tight text-ink-900 lg:text-3xl">
             {student.name}
           </h3>
           <p className="mt-1 font-body text-sm font-semibold text-ink-600">
@@ -288,6 +306,7 @@ function FlagshipCard({
         </div>
       </div>
 
+      {/* Achievement list — clearly separate from the photo */}
       <ul className="mt-7 space-y-3.5">
         {student.achievements.map((a) => (
           <li
@@ -302,16 +321,6 @@ function FlagshipCard({
           </li>
         ))}
       </ul>
-
-      {/* Decorative star cluster */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -bottom-4 -right-2 flex gap-1 opacity-40"
-      >
-        <Star className="h-6 w-6 fill-blush-400 text-blush-400" strokeWidth={0} />
-        <Star className="h-4 w-4 fill-blush-400 text-blush-400" strokeWidth={0} />
-        <Star className="h-5 w-5 fill-blush-400 text-blush-400" strokeWidth={0} />
-      </div>
     </article>
   );
 }
@@ -326,26 +335,41 @@ function SpotlightCard({ student }: { student: Student }) {
       ].join(' ')}
       style={{ borderRadius: student.shape }}
     >
-      <div className="flex items-center gap-3">
-        <span
-          className={[
-            'inline-flex h-11 w-11 shrink-0 items-center justify-center shadow-soft',
-            student.accentClass,
-          ].join(' ')}
-          style={{ borderRadius: '44% 56% 48% 52% / 58% 42% 58% 42%' }}
+      {/* Header row: organic photo frame + name/school */}
+      <div className="flex items-center gap-4">
+        <div
+          className="relative h-16 w-16 shrink-0 overflow-hidden shadow-card ring-1 ring-ink-900/5"
+          style={{ borderRadius: student.photoShape }}
         >
-          <Award className="h-5 w-5" strokeWidth={2.25} />
-        </span>
-        <div>
-          <h3 className="font-heading text-lg font-extrabold leading-tight text-ink-900">
-            {student.name}
-          </h3>
-          <p className="mt-0.5 font-body text-xs font-semibold text-ink-600">
+          <img
+            src={student.photo}
+            alt={`Học viên ${student.name} tại ILE`}
+            className="h-full w-full object-cover transition-transform duration-700 ease-smooth group-hover:scale-105"
+            loading="lazy"
+          />
+        </div>
+        <div className="min-w-0">
+          <div className="flex items-center gap-2">
+            <span
+              className={[
+                'inline-flex h-7 w-7 items-center justify-center shadow-soft',
+                student.accentClass,
+              ].join(' ')}
+              style={{ borderRadius: '44% 56% 48% 52% / 58% 42% 58% 42%' }}
+            >
+              <Award className="h-3.5 w-3.5" strokeWidth={2.25} />
+            </span>
+            <h3 className="font-heading text-lg font-extrabold leading-tight text-ink-900">
+              {student.name}
+            </h3>
+          </div>
+          <p className="mt-1 font-body text-xs font-semibold text-ink-600">
             {student.context}
           </p>
         </div>
       </div>
 
+      {/* Achievement list — clearly separate from the photo */}
       <ul className="mt-5 space-y-2.5">
         {student.achievements.map((a) => (
           <li
