@@ -404,6 +404,3 @@ function TeacherCard({ teacher }: { teacher: Teacher; index: number }) {
     </article>
   );
 }
-
-
-export default Teachers
