@@ -6,6 +6,7 @@ import Teachers from '@/components/home/Teachers';
 import Results from '@/components/home/Results';
 import Activities from '@/components/home/Activities';
 import Testimonials from '@/components/home/Testimonials';
+import FAQ from '@/components/home/FAQ';
 
 export default function HomePage() {
   return (
@@ -18,6 +19,7 @@ export default function HomePage() {
       <Results />
       <Activities />
       <Testimonials />
+      <FAQ />
     </>
   );
 }
