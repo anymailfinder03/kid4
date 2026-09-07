@@ -15,7 +15,7 @@ const activities: Activity[] = [
     photo:
       'https://res.cloudinary.com/wsaz946u/image/upload/v1788167398/kindy_carousel-1.webp',
     caption: 'Giờ kể chuyện',
-    width: 260,
+    width: 380,
     rotate: 'rotate-[-4deg]',
     offset: 'lg:mt-0',
     captionTint: 'bg-sky-200/90 text-sky-700',
@@ -24,7 +24,7 @@ const activities: Activity[] = [
     photo:
       'https://res.cloudinary.com/wsaz946u/image/upload/v1788167399/kindy_carousel-2.webp',
     caption: 'Trò chơi vận động',
-    width: 240,
+    width: 340,
     rotate: 'rotate-[3deg]',
     offset: 'lg:mt-16',
     captionTint: 'bg-blush-200/90 text-blush-600',
@@ -33,7 +33,7 @@ const activities: Activity[] = [
     photo:
       'https://res.cloudinary.com/wsaz946u/image/upload/v1788167399/kindy_carousel-3.webp',
     caption: 'Góc âm nhạc',
-    width: 280,
+    width: 420,
     rotate: 'rotate-[-2deg]',
     offset: 'lg:mt-6',
     captionTint: 'bg-cream-200 text-ink-700',
@@ -95,7 +95,7 @@ export default function Activities() {
         </div>
 
         {/* ── Desktop: scattered polaroid pinboard ── */}
-        <div className="relative mt-20 hidden lg:block">
+        <div className="relative mt-24 hidden lg:block">
           {/* Loose sticker accent floating behind polaroids */}
           <img
             src={STICKER}
@@ -104,7 +104,7 @@ export default function Activities() {
             className="pointer-events-none absolute left-[42%] top-[38%] h-16 w-16 rotate-[12deg] drop-shadow-[0_6px_12px_rgba(31,42,55,0.10)]"
           />
 
-          <div className="relative mx-auto flex max-w-5xl flex-wrap items-start justify-center gap-10">
+          <div className="relative mx-auto flex max-w-5xl flex-wrap items-start justify-center gap-12">
             {activities.map((a) => (
               <Polaroid key={a.caption} activity={a} />
             ))}
@@ -112,7 +112,7 @@ export default function Activities() {
         </div>
 
         {/* ── Mobile / tablet: stacked polaroids ── */}
-        <div className="relative mt-14 flex flex-col items-center gap-10 lg:hidden">
+        <div className="relative mt-16 flex flex-col items-center gap-12 lg:hidden">
           {/* Sticker accent between photos */}
           <img
             src={STICKER}
@@ -139,7 +139,7 @@ export default function Activities() {
         aria-hidden
         viewBox="0 0 1440 80"
         preserveAspectRatio="none"
-        className="mt-16 block h-12 w-full text-cream-100 sm:h-16"
+        className="mt-20 block h-12 w-full text-cream-100 sm:h-16"
       >
         <path
           d="M0 40 C 240 80, 480 0, 720 30 C 960 60, 1200 20, 1440 45 L 1440 80 L 0 80 Z"
@@ -161,7 +161,7 @@ function Polaroid({
 }) {
   const rotate = mobile ? mobileRotate : activity.rotate;
   const widthStyle: CSSProperties = mobile
-    ? { width: 240 }
+    ? { width: 300 }
     : { width: activity.width };
 
   return (
