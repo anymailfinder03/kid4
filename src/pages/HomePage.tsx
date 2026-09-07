@@ -4,6 +4,7 @@ import Programs from '@/components/home/Programs';
 import LearningJourney from '@/components/home/LearningJourney';
 import Teachers from '@/components/home/Teachers';
 import Results from '@/components/home/Results';
+import Activities from '@/components/home/Activities';
 
 export default function HomePage() {
   return (
@@ -14,6 +15,7 @@ export default function HomePage() {
       <LearningJourney />
       <Teachers />
       <Results />
+      <Activities />
     </>
   );
 }
