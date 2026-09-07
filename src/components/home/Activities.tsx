@@ -15,7 +15,7 @@ const activities: Activity[] = [
     photo:
       'https://res.cloudinary.com/wsaz946u/image/upload/v1788167398/kindy_carousel-1.webp',
     caption: 'Giờ kể chuyện',
-    width: 532,
+    width: 380,
     rotate: 'rotate-[-4deg]',
     offset: 'lg:mt-0',
     captionTint: 'bg-sky-200/90 text-sky-700',
@@ -24,7 +24,7 @@ const activities: Activity[] = [
     photo:
       'https://res.cloudinary.com/wsaz946u/image/upload/v1788167399/kindy_carousel-2.webp',
     caption: 'Trò chơi vận động',
-    width: 476,
+    width: 340,
     rotate: 'rotate-[3deg]',
     offset: 'lg:mt-16',
     captionTint: 'bg-blush-200/90 text-blush-600',
@@ -33,7 +33,7 @@ const activities: Activity[] = [
     photo:
       'https://res.cloudinary.com/wsaz946u/image/upload/v1788167399/kindy_carousel-3.webp',
     caption: 'Góc âm nhạc',
-    width: 588,
+    width: 420,
     rotate: 'rotate-[-2deg]',
     offset: 'lg:mt-6',
     captionTint: 'bg-cream-200 text-ink-700',
@@ -95,7 +95,7 @@ export default function Activities() {
         </div>
 
         {/* ── Desktop: scattered polaroid pinboard ── */}
-        <div className="relative mt-24 hidden xl:block">
+        <div className="relative mt-24 hidden lg:block">
           {/* Loose sticker accent floating behind polaroids */}
           <img
             src={STICKER}
@@ -104,19 +104,15 @@ export default function Activities() {
             className="pointer-events-none absolute left-[42%] top-[38%] h-16 w-16 rotate-[12deg] drop-shadow-[0_6px_12px_rgba(31,42,55,0.10)]"
           />
 
-          <div className="relative left-1/2 flex w-screen -translate-x-1/2 flex-nowrap items-start justify-center">
-            {activities.map((a, i) => (
-              <Polaroid
-                key={a.caption}
-                activity={a}
-                isLast={i === activities.length - 1}
-              />
+          <div className="relative mx-auto flex max-w-5xl flex-wrap items-start justify-center gap-12">
+            {activities.map((a) => (
+              <Polaroid key={a.caption} activity={a} />
             ))}
           </div>
         </div>
 
         {/* ── Mobile / tablet: stacked polaroids ── */}
-        <div className="relative mt-16 flex flex-col items-center gap-12 xl:hidden">
+        <div className="relative mt-16 flex flex-col items-center gap-12 lg:hidden">
           {/* Sticker accent between photos */}
           <img
             src={STICKER}
@@ -158,25 +154,15 @@ function Polaroid({
   activity,
   mobile = false,
   mobileRotate,
-  isLast = false,
 }: {
   activity: Activity;
   mobile?: boolean;
   mobileRotate?: string;
-  isLast?: boolean;
 }) {
   const rotate = mobile ? mobileRotate : activity.rotate;
   const widthStyle: CSSProperties = mobile
     ? { width: 300 }
-    : {
-        width: activity.width,
-        ...(isLast
-          ? {}
-          : {
-              marginRight:
-                'min(48px, calc((100vw - 1596px) / 2))',
-            }),
-      };
+    : { width: activity.width };
 
   return (
     <div
