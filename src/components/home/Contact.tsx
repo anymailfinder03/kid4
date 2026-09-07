@@ -2,7 +2,7 @@ import { type CSSProperties } from 'react';
 import { Sparkles, MapPin, Phone, Navigation } from 'lucide-react';
 
 const cardShape: CSSProperties = {
-  borderRadius: '32px 48px 28px 40px / 40px 28px 44px 32px',
+  borderRadius: '42% 58% 48% 52% / 58% 42% 56% 44%',
 };
 
 const mapShape: CSSProperties = {
@@ -67,7 +67,7 @@ export default function Contact() {
           {/* Left: contact info card */}
           <div className="lg:col-span-5">
             <div
-              className="relative flex h-full w-full min-w-0 max-w-[520px] flex-col overflow-hidden bg-cream-50 p-10 shadow-card ring-1 ring-ink-300/20 md:p-12 lg:min-w-[360px] lg:p-14"
+              className="relative flex h-full flex-col overflow-hidden bg-cream-50 p-8 shadow-card ring-1 ring-ink-300/20 lg:p-10"
               style={cardShape}
             >
               {/* Subtle dot pattern accent */}
