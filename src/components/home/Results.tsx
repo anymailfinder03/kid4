@@ -210,12 +210,12 @@ export default function Results() {
 
         {/* ── PART 2: Student spotlight cards ── */}
         {/* Desktop: asymmetric editorial grid — flagship left (2 rows), 3 stacked right */}
-        <div className="mt-16 hidden lg:grid lg:grid-cols-12 lg:gap-8">
-          <div className="flex flex-col gap-6 self-start lg:col-span-7">
+        <div className="mt-16 hidden lg:grid lg:grid-cols-12 lg:items-stretch lg:gap-8">
+          <div className="flex flex-col gap-6 lg:col-span-7">
             <FlagshipCard student={students[0]} />
             <QuoteCard />
           </div>
-          <div className="lg:col-span-5 flex flex-col gap-6">
+          <div className="flex flex-col gap-6 lg:col-span-5">
             <SpotlightCard student={students[1]} />
             <SpotlightCard student={students[2]} />
             <SpotlightCard student={students[3]} />
@@ -272,7 +272,7 @@ function FlagshipCard({
   return (
     <article
       className={[
-        'group relative overflow-visible p-8 shadow-lift ring-1 ring-ink-300/20 transition-all duration-300 ease-smooth hover:shadow-card',
+        'group relative shrink-0 overflow-visible p-8 shadow-lift ring-1 ring-ink-300/20 transition-all duration-300 ease-smooth hover:shadow-card',
         student.panelClass,
         mobile ? student.tilt : 'rotate-[-1.5deg]',
       ].join(' ')}
@@ -340,7 +340,7 @@ function FlagshipCard({
 function QuoteCard() {
   return (
     <article
-      className="relative overflow-visible p-7 shadow-soft ring-1 ring-ink-300/20 transition-all duration-300 ease-smooth hover:-translate-y-1 hover:shadow-card rotate-[1deg] bg-blush-100/60"
+      className="relative flex flex-1 flex-col justify-center overflow-visible p-7 shadow-soft ring-1 ring-ink-300/20 transition-all duration-300 ease-smooth hover:-translate-y-1 hover:shadow-card rotate-[1deg] bg-blush-100/60"
       style={{ borderRadius: '42% 58% 48% 52% / 58% 42% 56% 44%' }}
     >
       <div className="flex items-start gap-4">
@@ -366,7 +366,7 @@ function SpotlightCard({ student }: { student: Student }) {
   return (
     <article
       className={[
-        'group relative overflow-visible p-6 shadow-soft ring-1 ring-ink-300/20 transition-all duration-300 ease-smooth hover:-translate-y-1 hover:shadow-card',
+        'group relative flex-1 overflow-visible p-6 shadow-soft ring-1 ring-ink-300/20 transition-all duration-300 ease-smooth hover:-translate-y-1 hover:shadow-card',
         student.panelClass,
         student.tilt,
       ].join(' ')}
