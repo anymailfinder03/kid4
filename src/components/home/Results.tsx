@@ -1,6 +1,6 @@
 import { type CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CircleCheck as CheckCircle2, Sparkles, Award } from 'lucide-react';
+import { ArrowRight, CircleCheck as CheckCircle2, Sparkles, Award, Quote } from 'lucide-react';
 
 interface Stat {
   value: string;
@@ -120,6 +120,8 @@ const BG_IMAGE =
   'https://res.cloudinary.com/wsaz946u/image/upload/v1788166532/kindy_bg_trust.webp';
 const CHARACTER =
   'https://res.cloudinary.com/wsaz946u/image/upload/v1788166532/stream-1.svg';
+const LISTEN_CHARACTER =
+  'https://res.cloudinary.com/wsaz946u/image/upload/v1788166532/listen-1.svg';
 
 const flagshipShape: CSSProperties = {
   borderRadius: '28px 44px 32px 52px / 38px 28px 46px 30px',
@@ -209,8 +211,9 @@ export default function Results() {
         {/* ── PART 2: Student spotlight cards ── */}
         {/* Desktop: asymmetric editorial grid — flagship left (2 rows), 3 stacked right */}
         <div className="mt-16 hidden lg:grid lg:grid-cols-12 lg:gap-8">
-          <div className="self-start lg:col-span-7">
+          <div className="flex flex-col gap-6 self-start lg:col-span-7">
             <FlagshipCard student={students[0]} />
+            <QuoteCard />
           </div>
           <div className="lg:col-span-5 flex flex-col gap-6">
             <SpotlightCard student={students[1]} />
@@ -222,6 +225,7 @@ export default function Results() {
         {/* Mobile / tablet: clean vertical stack, flagship first */}
         <div className="mt-12 flex flex-col gap-6 lg:hidden">
           <FlagshipCard student={students[0]} mobile />
+          <QuoteCard />
           <SpotlightCard student={students[1]} />
           <SpotlightCard student={students[2]} />
           <SpotlightCard student={students[3]} />
@@ -274,16 +278,24 @@ function FlagshipCard({
       ].join(' ')}
       style={mobile ? { borderRadius: '28px 38px 32px 44px / 36px 28px 42px 30px' } : flagshipShape}
     >
+      {/* Small animal accent — peeking from top-right corner of the flagship card */}
+      <img
+        src={LISTEN_CHARACTER}
+        alt=""
+        aria-hidden
+        className="pointer-events-none absolute -right-3 -top-6 h-16 w-16 drop-shadow-[0_6px_12px_rgba(31,42,55,0.12)] sm:h-20 sm:w-20"
+      />
+
       {/* Header row: organic photo frame + name/school */}
       <div className="flex items-center gap-5">
         <div
-          className="relative h-32 w-32 shrink-0 overflow-hidden shadow-card ring-1 ring-ink-900/5 sm:h-36 sm:w-36 lg:h-40 lg:w-40"
-          style={{ borderRadius: student.photoShape }}
+          className="relative h-28 w-28 shrink-0 overflow-hidden shadow-card ring-1 ring-ink-900/5 sm:h-32 sm:w-32 lg:h-36 lg:w-36"
+          style={{ borderRadius: '52% 48% 56% 44% / 48% 54% 46% 52%' }}
         >
           <img
             src={student.photo}
             alt={`Học viên ${student.name} tại ILE`}
-            className="h-full w-full bg-cream-50 object-contain transition-transform duration-700 ease-smooth group-hover:scale-105"
+            className="h-full w-full object-cover object-center transition-transform duration-700 ease-smooth group-hover:scale-105"
             loading="lazy"
           />
         </div>
@@ -321,6 +333,31 @@ function FlagshipCard({
           </li>
         ))}
       </ul>
+    </article>
+  );
+}
+
+function QuoteCard() {
+  return (
+    <article
+      className="relative overflow-visible p-7 shadow-soft ring-1 ring-ink-300/20 transition-all duration-300 ease-smooth hover:-translate-y-1 hover:shadow-card rotate-[1deg] bg-blush-100/60"
+      style={{ borderRadius: '42% 58% 48% 52% / 58% 42% 56% 44%' }}
+    >
+      <div className="flex items-start gap-4">
+        <Quote
+          className="h-10 w-10 shrink-0 text-blush-400"
+          strokeWidth={1.5}
+        />
+        <div>
+          <p className="font-body text-base italic leading-relaxed text-ink-700 lg:text-lg">
+            Con tự tin hơn rất nhiều sau khi học ở ILE, không chỉ tiếng Anh mà
+            cả cách con thể hiện bản thân trước đám đông.
+          </p>
+          <p className="mt-4 font-body text-sm font-bold text-ink-900">
+            — Phụ huynh của Tuấn Kiệt
+          </p>
+        </div>
+      </div>
     </article>
   );
 }
